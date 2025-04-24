@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Everything is okay</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #555555;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .music-notes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .note {
+      position: absolute;
+      font-size: 24px;
+      animation: floatNotes linear infinite;
+      color: #333;
+    }
+
+    @keyframes floatNotes {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .center-text {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 58px;
+      font-weight: bold;
+      color: red;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .video-container {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      text-align: center;
+      font-size: 13px;
+      color: white;
+    }
+
+    .video-container iframe {
+      width: 300px;
+      height: 170px;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="music-notes" id="notes-container"></div>
+  <div class="center-text">Everything is okay</div>
+
+  <div class="video-container">
+    <p>Click my hearth </p>
+    <iframe 
+      src="https://www.youtube.com/embed/2vQkBVfDMZw" 
+      title="Nadad deer dar" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    const notesContainer = document.getElementById('notes-container');
+
+    function createNote() {
+      const note = document.createElement('div');
+      note.classList.add('note');
+      note.textContent = '🎵';
+      note.style.left = Math.random() * 100 + 'vw';
+      note.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      note.style.fontSize = (Math.random() * 10 + 20) + 'px';
+      notesContainer.appendChild(note);
+
+      setTimeout(() => {
+        note.remove();
+      }, 10000);
+    }
+
+    setInterval(createNote, 300);
+  </script>
+</body>
+</html>
